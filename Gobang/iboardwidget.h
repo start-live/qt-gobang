@@ -21,7 +21,6 @@ private:
     qint32 m_x;
     qint32 m_y;
     qint32 m_space;
-    qint32 m_roadCount;
     qint32 m_width;
     qint32 m_height;
     qint32 m_pieceWidth;

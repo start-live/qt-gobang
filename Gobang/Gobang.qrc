@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/gobang">
+        <file>images/vs.png</file>
+        <file>images/player1.png</file>
+        <file>images/player2.png</file>
+        <file>images/wzq.png</file>
+        <file>images/background4.png</file>
+    </qresource>
+</RCC>

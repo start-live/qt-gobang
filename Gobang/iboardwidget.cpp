@@ -10,14 +10,15 @@
 IBoardWidget::IBoardWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_x = 30;
-    m_y = 30;
+    m_x = 10;
+    m_y = 10;
     m_space = 50;
     m_pieceWidth = m_space - 2;
-    m_roadCount = 15;
-    m_width = m_space * (m_roadCount + 1);
-    m_height = m_space * (m_roadCount + 1);
+    m_width = m_space * (IGlobal::global().roadCount() + 1);
+    m_height = m_space * (IGlobal::global().roadCount() + 1);
     isb = true;
+
+    this->setFixedSize(m_width + 20, m_height + 20);
 }
 
 void IBoardWidget::paintEvent(QPaintEvent *event)
@@ -115,29 +116,17 @@ void IBoardWidget::mousePressEvent(QMouseEvent *event)
     qint32 startX = m_x + m_space;
     qint32 startY = m_y + m_space;
     QPoint selectPos;
-    for (qint32 roadX = 0;roadX < m_roadCount;roadX++)
+    qint32 roadCount = IGlobal::global().roadCount();
+    for (qint32 roadX = 0;roadX < roadCount;roadX++)
     {
         selectPos.setX(startX + roadX * m_space);
-        for (qint32 roadY = 0;roadY < m_roadCount;roadY++)
+        for (qint32 roadY = 0;roadY < roadCount;roadY++)
         {
             selectPos.setY(startY + roadY * m_space);
 
             if (qAbs(eventPos.x() - selectPos.x()) < 20 && qAbs(eventPos.y() - selectPos.y()) < 20)
             {
-                QPoint piecePos(roadX, roadY);
-                if (IGlobal::global().findPiece(piecePos))
-                    continue;
-
-                IPiece* pPiece = new IPiece(this);
-                pPiece->setPos(piecePos);
-                pPiece->setSize(QSize(m_pieceWidth, m_pieceWidth));
-                IPieceCamp camp = isb ? IPieceCamp::BLack : IPieceCamp::White;
-                isb = !isb;
-                pPiece->setCamp(camp);
-                IGlobal::global().addPiece(pPiece);
-                update();
-
-                emit posClicked(piecePos);
+                emit posClicked(QPoint(roadX, roadY));
                 return;
             }
         }

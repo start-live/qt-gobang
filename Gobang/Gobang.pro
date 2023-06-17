@@ -17,20 +17,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     iboardwidget.cpp \
+    ichesshelper.cpp \
+    ichessplayer.cpp \
+    icomputerplayer.cpp \
     iglobal.cpp \
+    ilocalplayer.cpp \
+    inetworkplayer.cpp \
+    ioperationwidget.cpp \
     ipersonalwidget.cpp \
     ipiece.cpp \
+    iplaywidget.cpp \
+    iscenebll.cpp \
+    iscenewidget.cpp \
     main.cpp \
     imainwidgetwidget.cpp
 
 HEADERS += \
     iboardwidget.h \
+    ichesshelper.h \
+    ichessplayer.h \
+    icomputerplayer.h \
     iglobal.h \
+    ilocalplayer.h \
     imainwidgetwidget.h \
+    inetworkplayer.h \
+    ioperationwidget.h \
     ipersonalwidget.h \
-    ipiece.h
+    ipiece.h \
+    iplaywidget.h \
+    iscenebll.h \
+    iscenewidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Gobang.qrc
